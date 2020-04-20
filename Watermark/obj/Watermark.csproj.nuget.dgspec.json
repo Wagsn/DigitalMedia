@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Workspace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj": {}
+    "E:\\WorkSpace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj": {}
   },
   "projects": {
-    "F:\\Workspace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj": {
+    "E:\\WorkSpace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Workspace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj",
+        "projectUniqueName": "E:\\WorkSpace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj",
         "projectName": "Watermark",
-        "projectPath": "F:\\Workspace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj",
+        "projectPath": "E:\\WorkSpace\\GitHub\\DigitalMedia\\Watermark\\Watermark.csproj",
         "packagesPath": "C:\\Users\\wagsn\\.nuget\\packages\\",
-        "outputPath": "F:\\Workspace\\GitHub\\DigitalMedia\\Watermark\\obj\\",
+        "outputPath": "E:\\WorkSpace\\GitHub\\DigitalMedia\\Watermark\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -25,10 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "F:\\Workspace\\LocalNuget": {},
-          "http://rd.xinkongjian.tech:8015/nuget/": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
