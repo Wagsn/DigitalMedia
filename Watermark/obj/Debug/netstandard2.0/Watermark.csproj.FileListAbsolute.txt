@@ -1,0 +1,5 @@
+F:\Workspace\GitHub\DigitalMedia\Watermark\bin\Debug\netstandard2.0\Watermark.deps.json
+F:\Workspace\GitHub\DigitalMedia\Watermark\bin\Debug\netstandard2.0\Watermark.dll
+F:\Workspace\GitHub\DigitalMedia\Watermark\obj\Debug\netstandard2.0\Watermark.csprojAssemblyReference.cache
+F:\Workspace\GitHub\DigitalMedia\Watermark\obj\Debug\netstandard2.0\Watermark.AssemblyInfoInputs.cache
+F:\Workspace\GitHub\DigitalMedia\Watermark\obj\Debug\netstandard2.0\Watermark.AssemblyInfo.cs
