@@ -18,9 +18,10 @@ namespace MouseWheelPictureZoom
         {
             InitializeComponent();
 
-            BindZoomEvent(panel1);
+            BindZoomEvent(_zoomPanel);
         }
 
+        // 包装为class
         private void BindZoomEvent(Control control)
         {
             //窗体中控件的事件晚期绑定
@@ -30,6 +31,24 @@ namespace MouseWheelPictureZoom
                 control.Controls[i].MouseLeave += new EventHandler(MyMouseLeave);
                 control.Controls[i].MouseMove += new MouseEventHandler(MyMouseMove);
             }
+        }
+
+        // 商铺及按钮数据
+        private List<Item> _shopButtons = new List<Item>();
+        // 伸缩比
+        private double _scale = 1.00;
+        // 图片的实际坐标
+        private int _px = 0;
+        private int _py = 0;
+
+        // 商铺及按钮
+        public class Item
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public bool HasUsed { get; set; }
+            public List<PointF> PointList { get; set; }
+            public Button Button { get; set; }
         }
 
         // 初始渲染
@@ -64,33 +83,71 @@ namespace MouseWheelPictureZoom
             // 计算伸缩比
             var scale = (double)ph / (double)poh;
 
-            //=================================多个按钮循环计算============================
-
-            // 计算按钮的原始长宽和坐标（相对图片{x=0,y=0,w=image.w,h=image.h}的像素坐标）
-            //var pointArr = "[[0,0],[100,0],[100,100],[0,100]]"; // [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]
-            var pointList = pointArr;
-            var box = pointList.Min(a => a.X);
-            var boy = pointList.Min(a => a.Y);
-            var bow = pointList.Max(a => a.X) - box;
-            var boh = pointList.Max(a => a.Y) - boy;
-            // 计算按钮的实际长宽和坐标(跟随相对图片、伸缩比和原始坐标乘以伸缩比)
-            var bx = (int)(px + box * scale);
-            var by = (int)(py + boy * scale);
-            var bw = (int)(bow * scale);
-            var bh = (int)(boh * scale);
-
-            // 重绘按钮
-            var button = button1;
-            button.Location = new Point(bx, by);
-            button.Size = new Size(bw, bh);
-
-            //=============================================================================
-
-
             // 同步全局变量
             _px = px;
             _py = py;
             _scale = scale;
+
+            // 生成商铺数据
+            for (var i = 0; i < 3; i++)
+            {
+                // 计算按钮的原始长宽和坐标（相对图片{x=0,y=0,w=image.w,h=image.h}的像素坐标）
+                var shift = 300 * i;
+                var pointList = new List<PointF> { new PointF { X = 100 + shift, Y = 100 + shift }, new PointF { X = 300 + shift, Y = 100 + shift }, new PointF { X = 300 + shift, Y = 300 + shift }, new PointF { X = 100 + shift, Y = 300 + shift } };
+                var box = pointList.Min(a => a.X);
+                var boy = pointList.Min(a => a.Y);
+                var bow = pointList.Max(a => a.X) - box;
+                var boh = pointList.Max(a => a.Y) - boy;
+                // 计算按钮的实际长宽和坐标(跟随相对图片、伸缩比和原始坐标乘以伸缩比)
+                var bx = (int)(px + box * scale);
+                var by = (int)(py + boy * scale);
+                var bw = (int)(bow * scale);
+                var bh = (int)(boh * scale);
+
+                // 显示用整型保存用浮点
+                var txt = $"19层-{35 + i}号\r\n已售\r\n100.85m²\r\n152(万)";
+                var btn = new Button();
+                btn.Location = new System.Drawing.Point(167, 65);
+                btn.Name = $"button{1+i}";
+                btn.Size = new System.Drawing.Size(68, 64);
+                btn.TabIndex = 1+i;
+                btn.Text = txt;
+                btn.UseVisualStyleBackColor = true;
+                var item = new Item
+                {
+                    Name = txt,
+                    HasUsed = true,
+                    PointList = pointList,
+                    Button = btn,
+                };
+
+                _shopButtons.Add(item);
+                // 将按钮添加到ZoomPanel
+                _zoomPanel.Controls.Add(btn);
+                btn.BringToFront();
+                btn.MouseDown += new MouseEventHandler(MyMouseDown);
+                btn.MouseLeave += new EventHandler(MyMouseLeave);
+                btn.MouseMove += new MouseEventHandler(MyMouseMove);
+
+                // 重绘按钮Rect
+                btn.Location = new Point(bx, by);
+                btn.Size = new Size(bw, bh);
+
+                // 重绘文本-按钮的实际长宽
+                bWBox.Text = btn.Width.ToString();
+                bHBox.Text = btn.Height.ToString();
+                bXBox.Text = btn.Location.X.ToString();
+                bYBox.Text = btn.Location.Y.ToString();
+                // 重绘文本-按钮的原始长宽
+                bOWBox.Text = bow.ToString();
+                bOHBox.Text = boh.ToString();
+                bOXBox.Text = box.ToString();
+                bOYBox.Text = boy.ToString();
+
+
+                // 将按钮从ZoomPanel中移除
+                //zoomPanel.Controls.Remove(btn);
+            }
 
             // 重绘文本-PictureBox的实际长宽坐标 
             pbWBox.Text = pBox.Width.ToString();
@@ -106,17 +163,6 @@ namespace MouseWheelPictureZoom
             pHBox.Text = ph.ToString();
             pXBox.Text = px.ToString();
             pYBox.Text = py.ToString();
-
-            // 重绘文本-按钮的实际长宽
-            bWBox.Text = button1.Width.ToString();
-            bHBox.Text = button1.Height.ToString();
-            bXBox.Text = button1.Location.X.ToString();
-            bYBox.Text = button1.Location.Y.ToString();
-            // 重绘文本-按钮的原始长宽
-            bOWBox.Text = bow.ToString();
-            bOHBox.Text = boh.ToString();
-            bOXBox.Text = box.ToString();
-            bOYBox.Text = boy.ToString();
 
             // 伸缩比
             scaleBox.Text = scale.ToString();
@@ -138,7 +184,7 @@ namespace MouseWheelPictureZoom
             MouseSizeBottomRight = 8,//拉伸右下角
             MouseDrag = 9 //鼠标拖动
         }
-        const int Band = 5;//范围半径
+        const int Band = 8;//范围半径
         const int MinWidth = 10;//最低宽度
         const int MinHeight = 10;//最低高度
         private EnumMousePointPosition m_MousePointPosition; //鼠标样式枚举
@@ -159,13 +205,6 @@ namespace MouseWheelPictureZoom
             m_MousePointPosition = EnumMousePointPosition.MouseSizeNone;
             this.Cursor = Cursors.Arrow;
         }
-        // 按钮的原始坐标
-        private List<Point> pointArr = new List<Point> { new Point { X = 100, Y = 100 }, new Point { X = 500, Y = 100 }, new Point { X = 500, Y = 500 }, new Point { X = 100, Y = 500 } };
-        // 伸缩比
-        private double _scale = 1.00;
-        // 图片的实际坐标
-        private int _px = 0;
-        private int _py = 0;
 
         //鼠标移过控件的事件
         private void MyMouseMove(object sender, MouseEventArgs e)
@@ -260,33 +299,40 @@ namespace MouseWheelPictureZoom
                     // 计算伸缩比
                     var scale = (double)ph / (double)poh;
 
-
-                    //=================================多个按钮循环计算============================
-
-                    // 计算按钮的原始长宽和坐标（相对图片{x=0,y=0,w=image.w,h=image.h}的像素坐标）
-                    //var pointArr = "[[0,0],[100,0],[100,100],[0,100]]"; // [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]
-                    var pointList = pointArr;
-                    var box = pointList.Min(a => a.X);
-                    var boy = pointList.Min(a => a.Y);
-                    var bow = pointList.Max(a => a.X) - box;
-                    var boh = pointList.Max(a => a.Y) - boy;
-                    // 计算按钮的实际长宽和坐标(跟随相对图片、伸缩比和原始坐标乘以伸缩比)
-                    var bx = (int)(px + box * scale);
-                    var by = (int)(py + boy * scale);
-                    var bw = (int)(bow * scale);
-                    var bh = (int)(boh * scale);
-
-                    // 重绘按钮
-                    var button = button1;
-                    button.Location = new Point(bx, by);
-                    button.Size = new Size(bw, bh);
-
-                    //=============================================================================
-
                     // 同步全局变量
                     _scale = scale;
                     _px = px;
                     _py = py;
+
+                    foreach(var item in _shopButtons)
+                    {
+                        // 计算按钮的原始长宽和坐标（相对图片{x=0,y=0,w=image.w,h=image.h}的像素坐标）
+                        var pointList = item.PointList;
+                        var box = pointList.Min(a => a.X);
+                        var boy = pointList.Min(a => a.Y);
+                        var bow = pointList.Max(a => a.X) - box;
+                        var boh = pointList.Max(a => a.Y) - boy;
+                        // 计算按钮的实际长宽和坐标(跟随相对图片、伸缩比和原始坐标乘以伸缩比)
+                        var bx = (int)(px + box * scale);
+                        var by = (int)(py + boy * scale);
+                        var bw = (int)(bow * scale);
+                        var bh = (int)(boh * scale);
+
+                        // 重绘按钮
+                        var button = item.Button;
+                        button.Location = new Point(bx, by);
+                        button.Size = new Size(bw, bh);
+                        // 重绘文本-按钮的实际长宽
+                        bWBox.Text = button.Width.ToString();
+                        bHBox.Text = button.Height.ToString();
+                        bXBox.Text = button.Location.X.ToString();
+                        bYBox.Text = button.Location.Y.ToString();
+                        // 重绘文本-按钮的原始长宽
+                        bOWBox.Text = bow.ToString();
+                        bOHBox.Text = boh.ToString();
+                        bOXBox.Text = box.ToString();
+                        bOYBox.Text = boy.ToString();
+                    }
 
                     // 重绘文本-PictureBox的实际长宽坐标 
                     pbWBox.Text = pBox.Width.ToString();
@@ -303,34 +349,24 @@ namespace MouseWheelPictureZoom
                     pXBox.Text = px.ToString();
                     pYBox.Text = py.ToString();
 
-                    // 重绘文本-按钮的实际长宽
-                    bWBox.Text = button1.Width.ToString();
-                    bHBox.Text = button1.Height.ToString();
-                    bXBox.Text = button1.Location.X.ToString();
-                    bYBox.Text = button1.Location.Y.ToString();
-                    // 重绘文本-按钮的原始长宽
-                    bOWBox.Text = bow.ToString();
-                    bOHBox.Text = boh.ToString();
-                    bOXBox.Text = box.ToString();
-                    bOYBox.Text = boy.ToString();
-
                     // 伸缩比
                     scaleBox.Text = scale.ToString();
                 }
                 if (lCtrl is Button)
                 {
-                    bWBox.Text = button1.Width.ToString();
-                    bHBox.Text = button1.Height.ToString();
-                    bXBox.Text = button1.Location.X.ToString();
-                    bYBox.Text = button1.Location.Y.ToString();
+                    var button = lCtrl as Button;
+                    bWBox.Text = button.Width.ToString();
+                    bHBox.Text = button.Height.ToString();
+                    bXBox.Text = button.Location.X.ToString();
+                    bYBox.Text = button.Location.Y.ToString();
 
                     var pBox = pictureBox1;
 
                     // 按钮的实际长宽和坐标
-                    var bw = button1.Width;
-                    var bh = button1.Height;
-                    var bx = button1.Left;
-                    var by = button1.Top;
+                    var bw = button.Width;
+                    var bh = button.Height;
+                    var bx = button.Left;
+                    var by = button.Top;
                     // 按钮的相对长宽和坐标 通过图片的实际坐标和伸缩比
                     var px = _px;
                     var py = _py;
@@ -339,13 +375,17 @@ namespace MouseWheelPictureZoom
                     var boh = (int)(bh / scale);
                     var box = (int)(((double)bx - px) / scale);
                     var boy = (int)(((double)by - py) / scale);
-                    pointArr = new List<Point> { new Point { X = box, Y = boy }, new Point { X = box+bow, Y = boy }, new Point { X = box + bow, Y = boy + boh }, new Point { X = box, Y = boy + boh } };
+                    var item = _shopButtons.FirstOrDefault(a => a.Button == button);
+                    if(item != null)
+                    {
+                        item.PointList = new List<PointF> { new PointF { X = box, Y = boy }, new PointF { X = box + bow, Y = boy }, new PointF { X = box + bow, Y = boy + boh }, new PointF { X = box, Y = boy + boh } };
+                    }
 
                     // 重绘文本-按钮的实际长宽
-                    bWBox.Text = button1.Width.ToString();
-                    bHBox.Text = button1.Height.ToString();
-                    bXBox.Text = button1.Location.X.ToString();
-                    bYBox.Text = button1.Location.Y.ToString();
+                    bWBox.Text = button.Width.ToString();
+                    bHBox.Text = button.Height.ToString();
+                    bXBox.Text = button.Location.X.ToString();
+                    bYBox.Text = button.Location.Y.ToString();
                     // 重绘文本-按钮的原始长宽
                     bOWBox.Text = bow.ToString();
                     bOHBox.Text = boh.ToString();
