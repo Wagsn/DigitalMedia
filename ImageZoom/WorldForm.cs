@@ -12,9 +12,9 @@ using System.Windows.Forms;
 namespace MouseWheelPictureZoom
 {
     // TODO 文字缩放和滚轮缩放
-    public partial class Form1 : Form
+    public partial class WorldForm : Form
     {
-        public Form1()
+        public WorldForm()
         {
             InitializeComponent();
 

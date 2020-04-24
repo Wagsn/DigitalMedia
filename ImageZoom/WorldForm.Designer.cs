@@ -1,6 +1,6 @@
 ﻿namespace MouseWheelPictureZoom
 {
-    partial class Form1
+    partial class WorldForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorldForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._zoomPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();

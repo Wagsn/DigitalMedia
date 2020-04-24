@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhashDemo", "PhashDemo\Phas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicReader", "ComicReader\ComicReader.csproj", "{7807A00E-94D7-4995-B89B-10ABAA39CE01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageRuler", "ImageRuler\ImageRuler.csproj", "{AC1969C9-1089-45F1-944F-CA4D8CEF0776}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7807A00E-94D7-4995-B89B-10ABAA39CE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7807A00E-94D7-4995-B89B-10ABAA39CE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7807A00E-94D7-4995-B89B-10ABAA39CE01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1969C9-1089-45F1-944F-CA4D8CEF0776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1969C9-1089-45F1-944F-CA4D8CEF0776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1969C9-1089-45F1-944F-CA4D8CEF0776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1969C9-1089-45F1-944F-CA4D8CEF0776}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
