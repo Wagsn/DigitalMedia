@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.zoomBox = new System.Windows.Forms.Panel();
+            this._zoomBox = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开文件夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // zoomBox
             // 
-            this.zoomBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zoomBox.Location = new System.Drawing.Point(0, 28);
-            this.zoomBox.Name = "zoomBox";
-            this.zoomBox.Size = new System.Drawing.Size(733, 630);
-            this.zoomBox.TabIndex = 2;
+            this._zoomBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._zoomBox.Location = new System.Drawing.Point(0, 28);
+            this._zoomBox.Name = "zoomBox";
+            this._zoomBox.Size = new System.Drawing.Size(1248, 775);
+            this._zoomBox.TabIndex = 2;
             // 
             // menuStrip1
             // 
@@ -50,7 +51,7 @@
             this.文件FToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(733, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1248, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,8 +74,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 658);
-            this.Controls.Add(this.zoomBox);
+            this.ClientSize = new System.Drawing.Size(1248, 803);
+            this.Controls.Add(this._zoomBox);
             this.Controls.Add(this.menuStrip1);
             this.Name = "ComicReader";
             this.Text = "ComicReader";
@@ -86,10 +87,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel zoomBox;
+        private System.Windows.Forms.Panel _zoomBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件FToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开文件夹ToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
