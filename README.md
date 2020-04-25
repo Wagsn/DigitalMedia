@@ -11,3 +11,5 @@ PhashDemo 图像Phash去重
 
 Watermark 图像添加水印
 
+NovelReader 小说阅读器
+
