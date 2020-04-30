@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{08
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelReader", "NovelReader\NovelReader.csproj", "{51C6BEA7-CE2C-47A9-BEEC-E5BF7FC9F1CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimilarPhoto", "SimilarPhoto\SimilarPhoto.csproj", "{92DC52F6-0C85-40B6-8ED3-DBF82DB74EC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{51C6BEA7-CE2C-47A9-BEEC-E5BF7FC9F1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C6BEA7-CE2C-47A9-BEEC-E5BF7FC9F1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C6BEA7-CE2C-47A9-BEEC-E5BF7FC9F1CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DC52F6-0C85-40B6-8ED3-DBF82DB74EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DC52F6-0C85-40B6-8ED3-DBF82DB74EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DC52F6-0C85-40B6-8ED3-DBF82DB74EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DC52F6-0C85-40B6-8ED3-DBF82DB74EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
