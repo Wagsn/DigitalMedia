@@ -15,6 +15,7 @@ namespace WatermarkTest
             var mrkText = "Wagsn";
             var dstImgPath = @"C:\Users\wagsn\Desktop\dst.jpg";
 
+            // 大小无法自适应
             new Watermark.WatermarkMaker().BuildWatermark(srcImgPath, mrkImgPath, mrkText, dstImgPath);
         }
     }
