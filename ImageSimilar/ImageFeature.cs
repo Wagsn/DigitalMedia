@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimilarPhoto
+namespace ImageSimilar
 {
     /// <summary>
     /// 图像特征（哈希、直方图、SIFT、Gist、ResNet全连接）
     /// </summary>
-    class ImageFeature
+    public class ImageFeature
     {
+        /// <summary>
+        /// 文件MD5
+        /// </summary>
+        public string MD5 { get; set; }
+        /// <summary>
+        /// 文件SHA256
+        /// </summary>
+        public string SHA256 { get; set; }
         /// <summary>
         /// 感知HASH值
         /// </summary>

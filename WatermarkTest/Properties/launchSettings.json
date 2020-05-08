@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WatermarkTest": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\wagsn\\Desktop\\2018.10_21.jpg C:\\Users\\wagsn\\Desktop\\adfd446df777490004e3de9bf154bb59.jpg Wagsn C:\\Users\\wagsn\\Desktop\\dst.jpg"
+    }
+  }
+}

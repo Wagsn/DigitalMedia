@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace SimilarPhoto
+namespace ImageSimilarTest
 {
     class Program
     {
@@ -17,7 +17,7 @@ namespace SimilarPhoto
             Dictionary<string, string> pathHashs = new Dictionary<string, string>();
             foreach(var file in files)
             {
-                var similar = new SimilarPhoto(file);
+                var similar = new ImageSimilar.SimilarPhoto(file);
                 var hash = similar.GetHash();
                 pathHashs[file] = hash;
                 Console.WriteLine(hash + " : " + Path.GetFileName(file));
@@ -34,7 +34,7 @@ namespace SimilarPhoto
                     {
                         Key = a,
                         Value = pathHashs[a],
-                        Degree = (int?)SimilarPhoto.CalcSimilarDegree(pathHashs[ph.Key], pathHashs[a])
+                        Degree = (int?)ImageSimilar.SimilarPhoto.CalcSimilarDegree(pathHashs[ph.Key], pathHashs[a])
                     };
                 }).Where(a => a.Degree > 50).OrderByDescending(a => a.Degree).Take(5).ToList();
                 return new

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Drawing;
 
-namespace SimilarPhoto
+namespace ImageSimilar
 {
     /// <summary>
     /// 相似照片
     /// </summary>
-    internal class SimilarPhoto
+    public class SimilarPhoto
     {
         private readonly string FilePath;
 
@@ -14,7 +14,6 @@ namespace SimilarPhoto
         {
             FilePath = filePath;
         }
-
 
         // 平均HASH
         public string GetHash()
